@@ -2,11 +2,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-MicroserviceBackendApplication<microservice-backend>",
+            "name": "Spring Boot-MicroservicePatientApplication<microservice-patient>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.medilabo.microservice_backend.MicroserviceBackendApplication",
-            "projectName": "microservice-backend",
+            "mainClass": "com.medilabo.microservice_patient.MicroservicePatientApplication",
+            "projectName": "microservice-patient",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
