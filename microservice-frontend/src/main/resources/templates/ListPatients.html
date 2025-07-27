@@ -7,7 +7,12 @@
     <h1>Liste des patients</h1>
     <ul>
         <li th:each="patient : ${patients}">
-            <span th:text="${patient.nom}"></span> <span th:text="${patient.prenom}"></span>
+            <span th:text="${patient.id}"></span>
+            <span th:text="${patient.firstName}"></span>
+            <span th:text="${patient.lastName}"></span>
+            <span th:text="${patient.gender}"></span>
+            <span th:text="${patient.birthDate}"></span>
+            <span th:text="${patient.email}"></span>
         </li>
     </ul>
 </body>

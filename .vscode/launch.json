@@ -19,6 +19,16 @@
             "projectName": "microservice-gateway",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceFrontendApplication<microservice-frontend>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.medilabo.microservice_frontend.MicroserviceFrontendApplication",
+            "projectName": "microservice-frontend",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
