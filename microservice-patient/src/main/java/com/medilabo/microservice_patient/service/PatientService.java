@@ -21,8 +21,19 @@ public class PatientService {
         return patientRepository.findById(id).orElse(null);
     }
 
+    public Patient updatePatient(Patient patient) {
+        if (patientRepository.existsById(patient.getId())) {
+            return patientRepository.save(patient);
+        }
+        return null;
+    }
+
     public Patient savePatient(Patient patient) {
         return patientRepository.save(patient);
+    }
+
+    public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
     }
 
 }
