@@ -1,13 +1,13 @@
-package com.medilabo.microservice_gateway;
+package com.medilabo.microservice_note;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroserviceGatewayApplication {
+public class MicroserviceNoteApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceGatewayApplication.class, args);
+		SpringApplication.run(MicroserviceNoteApplication.class, args);
 	}
 
 }
