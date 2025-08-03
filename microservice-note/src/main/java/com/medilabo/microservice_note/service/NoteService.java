@@ -27,4 +27,14 @@ public class NoteService {
         return noteRepository.findByPatientId(patientId);
     }
 
+    public void deleteNote(String id) {
+        noteRepository.deleteById(id);
+    }
+
+    public void updateNote(String id, Note note) {
+        Note existingNote = noteRepository.findById(id).orElseThrow(() -> new RuntimeException("Note not found"));
+        existingNote.setContent(note.getContent());
+        noteRepository.save(existingNote);
+    }
+
 }
