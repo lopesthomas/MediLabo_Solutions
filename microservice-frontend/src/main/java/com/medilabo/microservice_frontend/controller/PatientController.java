@@ -50,13 +50,29 @@ public class PatientController {
         model.addAttribute("patient", new Patient());
         return "AddPatient";
     }
-    // Check with @Valid and BindingResult are needed
+    
     @PostMapping("/patient/add")
     public String addPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "AddPatient";
         }
         patientProxy.addPatient(patient);
+        return "redirect:/listpatients";
+    }
+
+    @GetMapping("/patient/edit/{id}")
+    public String editPatientForm(@PathVariable("id") String id, Model model) {
+        Patient patient = patientProxy.getPatientById(id);
+        model.addAttribute("patient", patient);
+        return "EditPatient";
+    }
+
+    @PostMapping("/patient/edit/{id}")
+    public String editPatient(@PathVariable("id") String id, @Valid @ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "EditPatient";
+        }
+        patientProxy.updatePatient(patient);
         return "redirect:/listpatients";
     }
 

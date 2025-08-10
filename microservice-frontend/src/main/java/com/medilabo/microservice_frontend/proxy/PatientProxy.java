@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.medilabo.microservice_frontend.model.Patient;
 
@@ -20,6 +21,9 @@ public interface PatientProxy {
 
     @PostMapping("/patients/add")
     Patient addPatient(Patient patient);
+
+    @PostMapping("/patients/update")
+    Patient updatePatient(@RequestBody Patient patient);
 
     @DeleteMapping("/patients/delete/{id}")
     void deletePatient(@PathVariable("id") String id);
