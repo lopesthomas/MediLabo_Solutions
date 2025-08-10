@@ -82,4 +82,32 @@ public class PatientController {
         return "redirect:/listpatients";
     }
 
+    // Note management
+
+    @PostMapping("/note/add/{patientId}")
+    public String addNote(@PathVariable("patientId") String patientId, @Valid @ModelAttribute("note") Note note, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("patient", patientProxy.getPatientById(patientId));
+            return "Patient";
+        }
+        note.setPatientId(patientId);
+        noteProxy.addNote(note);
+        return "redirect:/patient/view/" + patientId;
+    }
+
+    @PostMapping("/note/update/{id}")
+    public String updateNote(@PathVariable("id") String id, @Valid @ModelAttribute("note") Note note, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("patient", patientProxy.getPatientById(note.getPatientId()));
+            return "Patient";
+        }
+        noteProxy.updateNote(id, note);
+        return "redirect:/patient/view/" + note.getPatientId();
+    }
+
+    @GetMapping("/note/delete/{id}/{patientId}")
+    public String deleteNote(@PathVariable("id") String id, @PathVariable("patientId") String patientId) {
+        noteProxy.deleteNote(id);
+        return "redirect:/patient/view/" + patientId;
+    }
 }
