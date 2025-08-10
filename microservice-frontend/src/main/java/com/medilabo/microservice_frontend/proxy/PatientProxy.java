@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.medilabo.microservice_frontend.model.Patient;
 
@@ -11,4 +12,7 @@ import com.medilabo.microservice_frontend.model.Patient;
 public interface PatientProxy {
     @GetMapping("/patients/list")
     List<Patient> getPatients();
+
+    @GetMapping("/patients/{id}")
+    Patient getPatientById(@PathVariable("id") String id);
 }

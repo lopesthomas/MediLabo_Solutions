@@ -26,8 +26,8 @@
                 <td th:text="${patient.gender}"></td>
                 <td th:text="${patient.birthDate}"></td>
                 <td>
-                    <a th:href="@{'/patients/' + ${patient.id}}" class="btn btn-primary btn-sm">Afficher</a>
-                    <a th:href="@{'/patients/delete/' + ${patient.id}}" class="btn btn-danger btn-sm ms-1">Supprimer</a>
+                    <a th:href="@{'/patient/view/' + ${patient.id}}" class="btn btn-primary btn-sm">Afficher</a>
+                    <a th:href="@{'/patient/delete/' + ${patient.id}}" class="btn btn-danger btn-sm ms-1">Supprimer</a>
                 </td>
             </tr>
         </tbody>

@@ -12,7 +12,6 @@ import com.medilabo.microservice_frontend.model.Note;
 import com.medilabo.microservice_frontend.model.Patient;
 import com.medilabo.microservice_frontend.proxy.NoteProxy;
 import com.medilabo.microservice_frontend.proxy.PatientProxy;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 

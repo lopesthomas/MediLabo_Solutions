@@ -64,7 +64,7 @@
             <div>
                 <div th:each="note : ${notes}" class="note-bubble">
                     <div th:text="${note.content}"></div>
-                    <div class="note-date" th:text="${#temporals.format(note.createdAt, 'dd/MM/yyyy HH:mm')}"></div>
+                    <div class="note-date" th:text="${note.createdAt}"></div>
                 </div>
             </div>
         </div>
