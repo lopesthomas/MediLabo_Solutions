@@ -1,11 +1,16 @@
 package com.medilabo.microservice_frontend.model;
 
+import jakarta.validation.constraints.NotBlank;
 
 public class Patient {
     private Long id;
+    @NotBlank(message = "First name is required")
     private String firstName;
+    @NotBlank(message = "Last name is required")
     private String lastName;
+    @NotBlank(message = "Birth date is required")
     private String birthDate;
+    @NotBlank(message = "Gender is required")
     private String gender;
     private String address;
     private String phone;

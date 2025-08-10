@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,8 @@ import com.medilabo.microservice_frontend.model.Note;
 import com.medilabo.microservice_frontend.model.Patient;
 import com.medilabo.microservice_frontend.proxy.NoteProxy;
 import com.medilabo.microservice_frontend.proxy.PatientProxy;
+
+import jakarta.validation.Valid;
 
 
 
@@ -47,9 +50,12 @@ public class PatientController {
         model.addAttribute("patient", new Patient());
         return "AddPatient";
     }
-
+    // Check with @Valid and BindingResult are needed
     @PostMapping("/patient/add")
-    public String addPatient(@ModelAttribute("patient") Patient patient) {
+    public String addPatient(@Valid @ModelAttribute("patient") Patient patient, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "AddPatient";
+        }
         patientProxy.addPatient(patient);
         return "redirect:/listpatients";
     }

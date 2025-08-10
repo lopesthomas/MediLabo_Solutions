@@ -29,11 +29,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Genre</label>
-                <input type="text" class="form-control" th:field="*{gender}" required>
+                <select class="form-select" th:field="*{gender}" required>
+                    <option value="">Sélectionner...</option>
+                    <option value="M">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Date de naissance</label>
-                <input type="text" class="form-control" th:field="*{birthDate}" required>
+                <input type="date" class="form-control" th:field="*{birthDate}" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">Adresse</label>
