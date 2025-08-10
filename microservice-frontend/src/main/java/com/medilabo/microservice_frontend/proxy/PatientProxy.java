@@ -3,8 +3,10 @@ package com.medilabo.microservice_frontend.proxy;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.medilabo.microservice_frontend.model.Patient;
 
@@ -15,4 +17,10 @@ public interface PatientProxy {
 
     @GetMapping("/patients/{id}")
     Patient getPatientById(@PathVariable("id") String id);
+
+    @PostMapping("/patients/add")
+    Patient addPatient(Patient patient);
+
+    @DeleteMapping("/patients/delete/{id}")
+    void deletePatient(@PathVariable("id") String id);
 }
