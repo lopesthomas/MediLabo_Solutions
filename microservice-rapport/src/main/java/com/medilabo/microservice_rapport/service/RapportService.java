@@ -55,8 +55,6 @@ public class RapportService {
                 .toList());
         rapport.setLevelRisk(riskLevel);
         
-        
-
         return rapport;
     }
 
@@ -80,28 +78,28 @@ public class RapportService {
         // aucun risque (None)
         if (triggerCount == 0) {
             return 0; // Aucun risque
-            // risque limité (Borderline)
-        } else if (triggerCount >= 2 && triggerCount <= 5 && age > 30) {
-            return 1; // Risque limité
             // danger (In Danger)
         } else if (age < 30) {
             if (gender.equals("M")) {
-                if (triggerCount >= 3) {
+                if (triggerCount >= 3 && triggerCount <= 4) {
                     return 2; // Danger
                     // apparition précoce (Early onset)
                 } else if (triggerCount >= 5) {
                     return 3; // Apparition précoce
                 }
             } else if (gender.equals("F")) {
-                if (triggerCount >= 4) {
+                if (triggerCount >= 4 && triggerCount <= 6) {
                     return 2; // Danger
                     // apparition précoce (Early onset)
                 } else if (triggerCount >= 7) {
                     return 3; // Apparition précoce
                 }
             }
-        } else if (age > 30) {
-            if (triggerCount >= 6) {
+        } else if (age >= 30) {
+            // risque limité (Boarderline)
+            if (triggerCount >= 2 && triggerCount <= 5) {
+                return 1; // Risque limité
+            } else if (triggerCount >= 6 && triggerCount <= 7) {
                 return 2; // Danger
                 // apparition précoce (Early onset)
             } else if (triggerCount >= 8) {
