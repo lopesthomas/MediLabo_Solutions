@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.medilabo.microservice_frontend.dto.RapportDTO;
 import com.medilabo.microservice_frontend.model.Note;
 import com.medilabo.microservice_frontend.model.Patient;
 import com.medilabo.microservice_frontend.proxy.NoteProxy;
 import com.medilabo.microservice_frontend.proxy.PatientProxy;
+import com.medilabo.microservice_frontend.proxy.RapportProxy;
 
 import jakarta.validation.Valid;
 
@@ -28,7 +30,9 @@ public class PatientController {
     private PatientProxy patientProxy;
     @Autowired
     private NoteProxy noteProxy;
-    
+    @Autowired
+    private RapportProxy rapportProxy;
+
     @GetMapping("/listpatients")
     public String listPatients(Model model) {
         List<Patient> patients = patientProxy.getPatients();
@@ -42,6 +46,8 @@ public class PatientController {
         model.addAttribute("patient", patient);
         List<Note> notes = noteProxy.getNotesByPatientId(id);
         model.addAttribute("notes", notes);
+        RapportDTO rapport = rapportProxy.getReport(Long.valueOf(id));
+        model.addAttribute("rapport", rapport);
         return "Patient";
     }
 
@@ -110,4 +116,11 @@ public class PatientController {
         noteProxy.deleteNote(id);
         return "redirect:/patient/view/" + patientId;
     }
+
+    // @GetMapping("/patient/report/{id}")
+    // public String getPatientReport(@PathVariable("id") String id, Model model) {
+    //     RapportDTO rapport = rapportProxy.getReport(Long.valueOf(id));
+    //     model.addAttribute("rapport", rapport);
+    //     return "PatientReport";
+    // }
 }

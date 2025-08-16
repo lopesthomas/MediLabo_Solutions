@@ -37,6 +37,13 @@
         .note-hover-group:hover .note-actions {
             display: block;
         }
+
+        .container-risk {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -90,7 +97,7 @@
     <div class="container mt-5">
         <div class="row">
             <!-- Infos patient -->
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="rounded-box mb-4">
                     <h3 class="mb-4">Informations du patient</h3>
                     <div class="mb-3">
@@ -121,7 +128,7 @@
                 </div>
             </div>
             <!-- Notes patient -->
-            <div class="col-md-7">
+            <div class="col-md-5">
                 <h3 class="mb-4">Notes</h3>
                 <div>
                     <div th:each="note : ${notes}" class="note-bubble position-relative note-hover-group">
@@ -130,8 +137,7 @@
                         <!-- Icônes édition/suppression -->
                         <div class="note-actions" style="position:absolute; top:10px; right:10px;">
                             <a href="#" class="btn btn-sm btn-outline-primary me-1" title="Modifier"
-                                data-bs-toggle="modal" data-bs-target="#editNoteModal" 
-                                th:attr="data-note-id=${note.id},
+                                data-bs-toggle="modal" data-bs-target="#editNoteModal" th:attr="data-note-id=${note.id},
                                           data-note-content=${note.content},
                                           data-note-patient-id=${note.patientId}">
                                 <i class="bi bi-pencil"></i>
@@ -146,6 +152,32 @@
                     <div class="mt-3">
                         <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#noteModal">Ajouter
                             une note</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Rapport patient -->
+            <!-- Container rapport diabète -->
+            <div class="col-md-3">
+                <div th:switch="${rapport.levelRisk}" class="p-4 rounded text-white mb-4" th:classappend=" 
+                        ${rapport.levelRisk} == 0 ? 'bg-success' :
+                        (${rapport.levelRisk} == 1 ? 'bg-info' :
+                        (${rapport.levelRisk} == 2 ? 'bg-warning' : 'bg-danger'))">
+                    <h5 class="mb-3">Risque de diabète</h5>
+                    <div th:case="0" class="container-risk">
+                        <i class="bi bi-shield-check" style="font-size:2rem;"></i><br>
+                        <span class="ms-2">Aucun risque <br> (None)</span>
+                    </div>
+                    <div th:case="1" class="container-risk">
+                        <i class="bi bi-exclamation-circle" style="font-size:2rem;"></i><br>
+                        <span class="ms-2">Risque limité <br> (Borderline)</span>
+                    </div>
+                    <div th:case="2" class="container-risk">
+                        <i class="bi bi-exclamation-triangle" style="font-size:2rem;"></i><br>
+                        <span class="ms-2">Danger <br> (In Danger)</span>
+                    </div>
+                    <div th:case="3" class="container-risk">
+                        <i class="bi bi-fire" style="font-size:2rem;"></i><br>
+                        <span class="ms-2">Apparition précoce <br> (Early onset)</span>
                     </div>
                 </div>
             </div>
