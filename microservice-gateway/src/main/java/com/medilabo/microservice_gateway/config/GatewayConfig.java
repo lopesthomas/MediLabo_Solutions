@@ -12,10 +12,16 @@ public class GatewayConfig {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
 			.route("patient_route", r -> r
-				.path("/patients/**")
+				.path("/api/patients/**")
 				.uri("http://localhost:8081"))
+			.route("note_route", r -> r
+				.path("/api/notes/**")
+				.uri("http://localhost:8083"))
+			.route("rapport_route", r -> r
+				.path("/api/report/**")
+				.uri("http://localhost:8084"))
 			.route("frontend_route", r -> r
-				.path("/frontend/**")
+				.path("/**")
 				.uri("http://localhost:8082"))
 			.build();
     }

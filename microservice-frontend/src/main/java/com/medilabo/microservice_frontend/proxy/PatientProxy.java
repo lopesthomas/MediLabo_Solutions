@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.medilabo.microservice_frontend.model.Patient;
 
-@FeignClient(name = "patient-service", url = "http://localhost:8081")
+@FeignClient(name = "patient-service", url = "http://localhost:8080")
 public interface PatientProxy {
-    @GetMapping("/patients/list")
+    @GetMapping("/api/patients/list")
     List<Patient> getPatients();
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/api/patients/{id}")
     Patient getPatientById(@PathVariable("id") String id);
 
-    @PostMapping("/patients/add")
+    @PostMapping("/api/patients/add")
     Patient addPatient(Patient patient);
 
-    @PostMapping("/patients/update")
+    @PostMapping("/api/patients/update")
     Patient updatePatient(@RequestBody Patient patient);
 
-    @DeleteMapping("/patients/delete/{id}")
+    @DeleteMapping("/api/patients/delete/{id}")
     void deletePatient(@PathVariable("id") String id);
 }

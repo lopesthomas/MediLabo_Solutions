@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.medilabo.microservice_frontend.model.Note;
 
-@FeignClient(name = "note-service", url = "http://localhost:8083")
+@FeignClient(name = "note-service", url = "http://localhost:8080")
 public interface NoteProxy {
 
-    @PostMapping("/notes/add")
+    @PostMapping("/api/notes/add")
     Note addNote(@RequestBody Note note);
 
-    @GetMapping("/notes/{patientId}")
+    @GetMapping("/api/notes/{patientId}")
     List<Note> getNotesByPatientId(@PathVariable String patientId);
 
-    @PutMapping("/notes/update/{id}")
+    @PutMapping("/api/notes/update/{id}")
     String updateNote(@PathVariable String id, @RequestBody Note note);
 
-    @DeleteMapping("/notes/delete/{id}")
+    @DeleteMapping("/api/notes/delete/{id}")
     void deleteNote(@PathVariable String id);
 }

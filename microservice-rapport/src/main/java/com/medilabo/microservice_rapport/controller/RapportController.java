@@ -14,7 +14,7 @@ public class RapportController {
     @Autowired
     private RapportService rapportService;
 
-    @GetMapping("/report/{patientId}")
+    @GetMapping("/api/report/{patientId}")
     public Rapport getRapport(@PathVariable String patientId) {
         return rapportService.generateRapport(patientId);
     }

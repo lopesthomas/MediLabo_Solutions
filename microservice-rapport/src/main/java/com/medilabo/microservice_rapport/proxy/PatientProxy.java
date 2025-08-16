@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.medilabo.microservice_rapport.model.Patient;
 
-@FeignClient(name = "patient-service", url = "http://localhost:8081")
+@FeignClient(name = "patient-service", url = "http://localhost:8080")
 public interface PatientProxy {
 
-    @GetMapping("/patients/{id}")
+    @GetMapping("/api/patients/{id}")
     Patient getPatientById(@PathVariable("id") String id);
 
 }

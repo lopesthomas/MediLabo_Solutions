@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.medilabo.microservice_rapport.model.Note;
 
-@FeignClient(name = "note-service", url = "http://localhost:8083")
+@FeignClient(name = "note-service", url = "http://localhost:8080")
 public interface NoteProxy {
 
-    @GetMapping("/notes/{patientId}")
+    @GetMapping("/api/notes/{patientId}")
     List<Note> getNotesByPatientId(@PathVariable String patientId);
 
 }
