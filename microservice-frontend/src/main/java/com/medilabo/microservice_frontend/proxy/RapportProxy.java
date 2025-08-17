@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.medilabo.microservice_frontend.dto.RapportDTO;
 
-@FeignClient(name = "rapport", url = "http://localhost:8080")
+@FeignClient(name = "rapport", url = "http://localhost:8090")
 public interface RapportProxy {
 
     @GetMapping("/api/report/{id}")

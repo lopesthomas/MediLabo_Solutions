@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.medilabo.microservice_frontend.model.Note;
 
-@FeignClient(name = "note-service", url = "http://localhost:8080")
+@FeignClient(name = "note-service", url = "http://localhost:8090")
 public interface NoteProxy {
 
     @PostMapping("/api/notes/add")
