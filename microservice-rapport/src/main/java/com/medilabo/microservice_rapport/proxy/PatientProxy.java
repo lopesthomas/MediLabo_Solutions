@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.medilabo.microservice_rapport.model.Patient;
 
-@FeignClient(name = "patient-service", url = "http://localhost:8090")
+@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090")
 public interface PatientProxy {
 
     @GetMapping("/api/patients/{id}")
