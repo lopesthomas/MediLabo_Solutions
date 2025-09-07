@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.3.2
+    command: start-dev --import-realm
+    environment:
+      KC_HOSTNAME: keycloak
+      KC_HOSTNAME_STRICT: "false"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: dev-mem
+      # Pour importer un realm, monte un dossier contenant ton export realm.json
+      KC_IMPORT: /opt/keycloak/data/import/medilabo-realm.json
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak-import:/opt/keycloak/data/import
+
+  frontend:
+    build:
+      context: ./microservice-frontend
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI: http://keycloak:8080/realms/medilabo
+    depends_on:
+      - keycloak
