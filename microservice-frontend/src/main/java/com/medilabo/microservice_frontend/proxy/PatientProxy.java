@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.medilabo.microservice_frontend.model.Patient;
 
-@FeignClient(name = "patient-service", url = "http://localhost:8090")
+@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090")
 public interface PatientProxy {
     @GetMapping("/api/patients/list")
     List<Patient> getPatients();
