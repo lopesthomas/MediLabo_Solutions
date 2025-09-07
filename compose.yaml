@@ -61,6 +61,16 @@ services:
     ports:
       - "8083:8083"
 
+  microservice-gateway:
+    build:
+      context: ./microservice-gateway
+    ports:
+      - "8090:8090"
+    depends_on:
+      - microservice-patient
+      - microservice-note
+      - frontend
+
 
 volumes:
   patient-mysql-data:

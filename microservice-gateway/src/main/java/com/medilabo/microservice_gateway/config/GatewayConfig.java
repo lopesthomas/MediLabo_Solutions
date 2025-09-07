@@ -13,16 +13,16 @@ public class GatewayConfig {
         return builder.routes()
 			.route("patient_route", r -> r
 				.path("/api/patients/**")
-				.uri("http://localhost:8081"))
+				.uri("http://microservice-patient:8081"))
 			.route("note_route", r -> r
 				.path("/api/notes/**")
-				.uri("http://localhost:8083"))
+				.uri("http://microservice-note:8083"))
 			.route("rapport_route", r -> r
 				.path("/api/report/**")
-				.uri("http://localhost:8084"))
+				.uri("http://microservice-rapport:8084"))
 			.route("frontend_route", r -> r
 				.path("/**")
-				.uri("http://localhost:8082"))
+				.uri("http://frontend:8082"))
 			.build();
     }
 
