@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <title>Liste des patients</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-<div class="container mt-5">
-    <h1 class="mb-4">Liste des patients</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Genre</th>
-                <th>Date de naissance</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="patient : ${patients}">
-                <td th:text="${patient.id}"></td>
-                <td th:text="${patient.firstName}"></td>
-                <td th:text="${patient.lastName}"></td>
-                <td th:text="${patient.gender}"></td>
-                <td th:text="${patient.birthDate}"></td>
-                <td>
-                    <a th:href="@{'/patient/view/' + ${patient.id}}" class="btn btn-primary btn-sm">Afficher</a>
-                    <a th:href="@{'/patient/delete/' + ${patient.id}}" class="btn btn-danger btn-sm ms-1">Supprimer</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/patient/add" class="btn btn-success">Ajouter</a>
-</div>
+    <a href="/logout" class="btn btn-outline-danger">Déconnexion</a>
+    <div class="container mt-5">
+        <h1 class="mb-4">Liste des patients</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Genre</th>
+                    <th>Date de naissance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="patient : ${patients}">
+                    <td th:text="${patient.id}"></td>
+                    <td th:text="${patient.firstName}"></td>
+                    <td th:text="${patient.lastName}"></td>
+                    <td th:text="${patient.gender}"></td>
+                    <td th:text="${patient.birthDate}"></td>
+                    <td>
+                        <a th:href="@{'/patient/view/' + ${patient.id}}" class="btn btn-primary btn-sm">Afficher</a>
+                        <a th:href="@{'/patient/delete/' + ${patient.id}}"
+                            class="btn btn-danger btn-sm ms-1">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/patient/add" class="btn btn-success">Ajouter</a>
+    </div>
 </body>
+
 </html>
