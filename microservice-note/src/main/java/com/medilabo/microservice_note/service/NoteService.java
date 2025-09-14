@@ -15,6 +15,10 @@ public class NoteService {
     @Autowired
     private NoteRepository noteRepository;
 
+    public NoteService(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
+
     public Note addNote(String patientId, String content){
         Note note = new Note();
         note.setPatientId(patientId);
