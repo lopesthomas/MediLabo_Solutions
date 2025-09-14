@@ -1,10 +1,27 @@
 version: '3.8'
 
 services:
+  keycloak-db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: keycloak
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloakpwd
+    ports:
+      - "3308:3306"
+    volumes:
+      - keycloak-mysql-data:/var/lib/mysql
+
   keycloak:
     image: quay.io/keycloak/keycloak:26.3.2
     command: start-dev --import-realm
     environment:
+      KC_DB: mysql
+      KC_DB_URL: jdbc:mysql://keycloak-db:3306/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: keycloakpwd
+    
       KC_HOSTNAME: host.docker.internal
       KC_HOSTNAME_URL: http://host.docker.internal:8080
       KC_HOSTNAME_ADMIN_URL: http://host.docker.internal:8080
@@ -12,8 +29,10 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: "false"
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_DB: dev-mem
+      
       KC_IMPORT: /opt/keycloak/data/import/medilabo-realm.json
+    depends_on:
+      - keycloak-db
     ports:
       - "8080:8080"
     volumes:
@@ -30,6 +49,12 @@ services:
       - "host.docker.internal:host-gateway"
     depends_on:
       - keycloak
+      - keycloak-db
+      - mysql-patient
+      - microservice-patient
+      - microservice-note
+      - microservice-rapport
+    restart: unless-stopped
 
   mysql-patient:
     image: mysql
@@ -86,3 +111,4 @@ services:
 
 volumes:
   patient-mysql-data:
+  keycloak-mysql-data:
