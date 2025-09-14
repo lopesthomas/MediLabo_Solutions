@@ -23,6 +23,7 @@ import jakarta.validation.Valid;
 
 
 
+
 @Controller
 public class PatientController {
 
@@ -32,6 +33,11 @@ public class PatientController {
     private NoteProxy noteProxy;
     @Autowired
     private RapportProxy rapportProxy;
+
+    @GetMapping("/")
+    public String redirectListPatients() {
+        return "redirect:/listpatients";
+    }
 
     @GetMapping("/listpatients")
     public String listPatients(Model model) {
@@ -117,10 +123,4 @@ public class PatientController {
         return "redirect:/patient/view/" + patientId;
     }
 
-    // @GetMapping("/patient/report/{id}")
-    // public String getPatientReport(@PathVariable("id") String id, Model model) {
-    //     RapportDTO rapport = rapportProxy.getReport(Long.valueOf(id));
-    //     model.addAttribute("rapport", rapport);
-    //     return "PatientReport";
-    // }
 }
