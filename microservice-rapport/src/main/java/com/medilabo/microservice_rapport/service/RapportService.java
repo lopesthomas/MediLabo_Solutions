@@ -22,6 +22,11 @@ public class RapportService {
     @Autowired
     private PatientProxy patientProxy;
 
+    public RapportService(NoteProxy noteProxy, PatientProxy patientProxy) {
+        this.noteProxy = noteProxy;
+        this.patientProxy = patientProxy;
+    }
+
     private static final List<String> TRIGGERS = List.of(
             "Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur", "Fumeuse",
             "Anormal", "Cholestérol", "Vertiges", "Rechute", "Réaction", "Anticorps");
