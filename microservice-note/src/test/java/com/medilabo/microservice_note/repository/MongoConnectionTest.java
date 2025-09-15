@@ -15,6 +15,7 @@ public class MongoConnectionTest {
     @Test
     void testMongoConnectionAndSave() {
         Note note = new Note();
+        note.setPatientId("01");
         note.setContent("Connection test");
         Note saved = noteRepository.save(note);
         assertNotNull(saved.getId());
