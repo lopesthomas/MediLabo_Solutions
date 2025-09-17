@@ -2540,5 +2540,21 @@
   },
   "clientPolicies": {
     "policies": []
+  },
+  "users": [
+  {
+    "username": "testuser",
+    "enabled": true,
+    "email": "test@test.com",
+    "firstName": "Test",
+    "lastName": "User",
+    "credentials": [
+      {
+        "type": "password",
+        "value": "test",
+        "temporary": false
+      }
+    ]
   }
+]
 }
