@@ -1732,7 +1732,10 @@
       }
     ]
   },
-  "internationalizationEnabled": false,
+  "internationalizationEnabled": true,
+  "supportedLocales": [
+    "fr"
+  ],
   "authenticationFlows": [
     {
       "id": "a30936bd-906a-4a6e-b452-ecbaf397f3de",
