@@ -7,13 +7,20 @@
 </head>
 
 <body>
-    <a href="/logout" class="btn btn-outline-danger">Déconnexion</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MediLabo</a>
+            <div class="d-flex ms-auto">
+                <a href="/logout" class="btn btn-outline-danger">Déconnexion</a>
+            </div>
+        </div>
+    </nav>
     <div class="container mt-5">
         <h1 class="mb-4">Liste des patients</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <!-- <th>ID</th> -->
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Genre</th>
@@ -23,11 +30,11 @@
             </thead>
             <tbody>
                 <tr th:each="patient : ${patients}">
-                    <td th:text="${patient.id}"></td>
+                    <!-- <td th:text="${patient.id}"></td> -->
                     <td th:text="${patient.firstName}"></td>
                     <td th:text="${patient.lastName}"></td>
-                    <td th:text="${patient.gender}"></td>
-                    <td th:text="${patient.birthDate}"></td>
+                    <td th:text="${patient.gender == 'F' ? 'Femme' : 'Homme'}"></td>
+                    <td th:text="${patient.birthDate}" class="birth-date"></td>
                     <td>
                         <a th:href="@{'/patient/view/' + ${patient.id}}" class="btn btn-primary btn-sm">Afficher</a>
                         <a th:href="@{'/patient/delete/' + ${patient.id}}"
@@ -38,6 +45,7 @@
         </table>
         <a href="/patient/add" class="btn btn-success">Ajouter</a>
     </div>
+    <script src="/js/DateFormat.js"></script>
 </body>
 
 </html>
