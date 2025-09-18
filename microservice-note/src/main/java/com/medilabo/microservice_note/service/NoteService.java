@@ -1,6 +1,8 @@
 package com.medilabo.microservice_note.service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class NoteService {
         Note note = new Note();
         note.setPatientId(patientId);
         note.setContent(content);
-        note.setCreatedAt(LocalDateTime.now());
+        note.setCreatedAt(ZonedDateTime.now(ZoneId.of("Europe/Paris")).toLocalDateTime());
         return noteRepository.save(note);
     }
 
