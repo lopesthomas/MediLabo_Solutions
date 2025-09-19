@@ -102,6 +102,30 @@ You can log in directly with this account from the frontend after startup ✅
 - You can run/debug services individually in your IDE
 - Unit & integration tests are provided for core logic & controllers
 
+<h2 align="center">⚠️ Troubleshooting (OS-specific setup)</h2>
+
+Depending on your operating system, Docker networking may require adjustments :  
+
+### 🐧 Linux (tested on Linux Mint)
+On Linux, `host.docker.internal` may not resolve by default  
+To fix this, add the following line to `/etc/hosts`:
+- `127.0.0.1 host.docker.internal`
+
+Then restart Docker and relaunch the containers:
+```sh
+docker compose down -v
+docker compose up --build
+```
+
+### 🪟 Windows
+
+No extra configuration needed. `host.docker.internal` works out of the box
+
+### 🍏 macOS
+
+⚠️ Not tested yet, but Docker Desktop for Mac normally supports `host.docker.internal` natively.
+If issues occur, the same `/etc/hosts` fix as on Linux may be required
+
 <h2 align="center">📝 Notes</h2>
 
 - 🚫 Do not expose internal services (patient/note/report) directly — only the gateway & frontend should be public
