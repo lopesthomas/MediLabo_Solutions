@@ -1,5 +1,6 @@
 package com.medilabo.microservice_patient.controller;
 
+import com.medilabo.microservice_patient.config.TestSecurityConfig;
 import com.medilabo.microservice_patient.model.Gender;
 import com.medilabo.microservice_patient.model.Patient;
 import com.medilabo.microservice_patient.repository.PatientRepository;
@@ -8,7 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.*;
@@ -17,6 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Import(TestSecurityConfig.class)
+@ActiveProfiles("test")
 class PatientControllerTest {
 
     @Autowired
