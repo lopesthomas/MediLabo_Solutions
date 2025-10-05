@@ -31,11 +31,9 @@ class NoteControllerTest {
         noteRepository.deleteAll();
         Note note = new Note();
         note.setContent("Test note");
+        note.setPatientId("123");
         Note saved = noteRepository.save(note);
         noteId = saved.getId();
-        saved.setPatientId("123");
-        noteRepository.save(saved);
-
     }
 
     @Test
