@@ -126,6 +126,25 @@ No extra configuration needed. `host.docker.internal` works out of the box
 ⚠️ Not tested yet, but Docker Desktop for Mac normally supports `host.docker.internal` natively.
 If issues occur, the same `/etc/hosts` fix as on Linux may be required
 
+<h2 align="center">🌱 Green Code & Eco-Design</h2>
+
+As part of a sustainable and energy-efficient approach, here are several Green Code best practices to minimize its environmental impact.
+
+### ♻️ Limiting Energy-Intensive Code
+
+- 🚫 Avoid unnecessary network calls — group Feign or REST requests to reduce latency and bandwidth usage
+- ⚙️ Optimize algorithms — prevent looping through all patients or notes when only a subset is required
+- 💾 Use caching where appropriate (e.g., for static or rarely updated data)
+- 📦 Reduce payload size — design lightweight and context-appropriate DTOs to limit data transfer volume
+
+### 🔄 Green Refactoring Guidelines
+
+- 🧩 Factorize redundant code — create reusable methods or shared services to improve maintainability
+- 🧹 Remove unused endpoints or methods to simplify the codebase and reduce maintenance overhead
+- 🗃️ Optimize SQL/NoSQL queries — use indexes, projections, and pagination to reduce database load
+- ✅ Automate testing — detect issues early to avoid costly (and energy-hungry) fixes later
+- 📊 Monitor container memory and CPU usage — adjust allocated resources to match actual service needs
+
 <h2 align="center">📝 Notes</h2>
 
 - 🚫 Do not expose internal services (patient/note/report) directly — only the gateway & frontend should be public
