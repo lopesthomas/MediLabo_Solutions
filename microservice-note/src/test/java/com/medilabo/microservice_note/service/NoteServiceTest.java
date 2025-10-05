@@ -45,6 +45,21 @@ class NoteServiceTest {
     }
 
     @Test
+    void testAddNoteWithInvalidPatient() {
+        NoteRepository repo = mock(NoteRepository.class);
+        PatientProxy patientProxy = mock(PatientProxy.class);
+        NoteService service = new NoteService(repo, patientProxy);
+        when(patientProxy.getPatientById("999")).thenReturn(null);
+
+        assertThrows(RuntimeException.class, () -> {
+            service.addNote("999", "New note");
+        });
+        assertEquals("Patient Id not found", assertThrows(RuntimeException.class, () -> {
+            service.addNote("999", "New note");
+        }).getMessage());
+    }
+
+    @Test
     void testDeleteNote() {
         NoteRepository repo = mock(NoteRepository.class);
         PatientProxy patientProxy = mock(PatientProxy.class);
