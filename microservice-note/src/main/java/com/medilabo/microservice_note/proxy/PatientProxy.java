@@ -4,9 +4,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.medilabo.microservice_note.config.FeignConfig;
 import com.medilabo.microservice_note.dto.Patient;
 
-@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090")
+@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090", configuration = FeignConfig.class)
 public interface PatientProxy {
 
     @GetMapping("/api/patients/{id}")
