@@ -1,6 +1,5 @@
 package com.medilabo.microservice_note.service;
 
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.medilabo.microservice_note.model.Note;
+import com.medilabo.microservice_note.proxy.PatientProxy;
 import com.medilabo.microservice_note.repository.NoteRepository;
 
 @Service
@@ -17,11 +17,20 @@ public class NoteService {
     @Autowired
     private NoteRepository noteRepository;
 
-    public NoteService(NoteRepository noteRepository) {
+    @Autowired
+    private PatientProxy patientProxy;
+
+    public NoteService(NoteRepository noteRepository, PatientProxy patientProxy) {
         this.noteRepository = noteRepository;
+        this.patientProxy = patientProxy;
     }
 
     public Note addNote(String patientId, String content){
+        
+        if(patientProxy.getPatientById(patientId) == null){
+            throw new RuntimeException("Patient Id not found");
+        }
+
         Note note = new Note();
         note.setPatientId(patientId);
         note.setContent(content);
