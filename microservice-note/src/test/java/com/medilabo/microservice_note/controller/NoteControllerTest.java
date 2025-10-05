@@ -1,5 +1,6 @@
 package com.medilabo.microservice_note.controller;
 
+import com.medilabo.microservice_note.config.TestSecurityConfig;
 import com.medilabo.microservice_note.model.Note;
 import com.medilabo.microservice_note.repository.NoteRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.*;
@@ -16,6 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Import(TestSecurityConfig.class)
+@ActiveProfiles("test")
 class NoteControllerTest {
 
     @Autowired
@@ -31,9 +36,11 @@ class NoteControllerTest {
         noteRepository.deleteAll();
         Note note = new Note();
         note.setContent("Test note");
-        note.setPatientId("123");
         Note saved = noteRepository.save(note);
         noteId = saved.getId();
+        saved.setPatientId("123");
+        noteRepository.save(saved);
+
     }
 
     @Test
