@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.medilabo.microservice_frontend.config.FeignConfig;
 import com.medilabo.microservice_frontend.model.Patient;
 
-@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090")
+@FeignClient(name = "patient-service", url = "http://microservice-gateway:8090", configuration = FeignConfig.class)
 public interface PatientProxy {
     @GetMapping("/api/patients/list")
     List<Patient> getPatients();

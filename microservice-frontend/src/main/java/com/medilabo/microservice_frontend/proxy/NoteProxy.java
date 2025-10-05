@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.medilabo.microservice_frontend.config.FeignConfig;
 import com.medilabo.microservice_frontend.model.Note;
 
-@FeignClient(name = "note-service", url = "http://microservice-gateway:8090")
+@FeignClient(name = "note-service", url = "http://microservice-gateway:8090", configuration = FeignConfig.class)
 public interface NoteProxy {
 
     @PostMapping("/api/notes/add")
